@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>SSH Tutorial - Tutorial Site</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Tutorial Site</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../getting-started/" class="nav-link">Getting Started</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">SSH Tutorial</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../getting-started/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#ssh-tutorial-for-beginners" class="nav-link">🛡️ SSH Tutorial for Beginners</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#installing-openssh" class="nav-link">📦 Installing OpenSSH</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#connecting-via-ssh-client" class="nav-link">🚀 Connecting via SSH (Client)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#ssh-key-based-login-optional-but-recommended" class="nav-link">🔐 SSH Key-Based Login (Optional but Recommended)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#secure-file-transfer-with-scp" class="nav-link">📁 Secure File Transfer with SCP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#recursively-copy-folders" class="nav-link">🔁 Recursively Copy Folders</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#port-forwarding" class="nav-link">🔧 Port Forwarding</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#ssh-config-file-for-easy-connections" class="nav-link">🗂️ SSH Config File for Easy Connections</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#summary-of-basic-ssh-commands" class="nav-link">📋 Summary of Basic SSH Commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#security-tips" class="nav-link">🔐 Security Tips</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#testing-ssh-connection" class="nav-link">🧪 Testing SSH Connection</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#restart-ssh-service-if-needed" class="nav-link">🔄 Restart SSH Service (if needed)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="ssh-tutorial-for-beginners">🛡️ SSH Tutorial for Beginners</h1>
+<p>SSH (Secure Shell) is a protocol used to securely access and manage remote computers over a network. It provides encrypted communication for login, file transfers, and command execution.</p>
+<hr />
+<h2 id="installing-openssh">📦 Installing OpenSSH</h2>
+<h3 id="on-the-server-linux">🖥️ On the Server (Linux)</h3>
+<p>To allow incoming SSH connections, install the <strong>OpenSSH Server</strong>:</p>
+<h4 id="debianubuntu">Debian/Ubuntu</h4>
+<pre><code class="language-bash">sudo apt update
+sudo apt install openssh-server
+</code></pre>
+<h4 id="fedora">Fedora</h4>
+<pre><code class="language-bash">sudo dnf install openssh-server
+sudo systemctl enable --now sshd
+</code></pre>
+<h4 id="arch-linux">Arch Linux</h4>
+<pre><code class="language-bash">sudo pacman -S openssh
+sudo systemctl enable --now sshd
+</code></pre>
+<h3 id="check-ssh-status">🔍 Check SSH Status</h3>
+<pre><code class="language-bash">sudo systemctl status ssh
+</code></pre>
+<p>It should say <code>active (running)</code>.</p>
+<hr />
+<h2 id="connecting-via-ssh-client">🚀 Connecting via SSH (Client)</h2>
+<p>Use this command from your <strong>local machine</strong>:</p>
+<pre><code class="language-bash">ssh username@host
+</code></pre>
+<p><strong>Example:</strong></p>
+<pre><code class="language-bash">ssh alice@192.168.1.10
+</code></pre>
+<p>You’ll be prompted to enter the remote password.</p>
+<hr />
+<h2 id="ssh-key-based-login-optional-but-recommended">🔐 SSH Key-Based Login (Optional but Recommended)</h2>
+<h3 id="1-generate-a-key-pair-on-client">1. Generate a Key Pair (on client)</h3>
+<pre><code class="language-bash">ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;
+</code></pre>
+<p>Accept defaults (<code>~/.ssh/id_rsa</code>) by pressing Enter.</p>
+<h3 id="2-copy-public-key-to-server">2. Copy Public Key to Server</h3>
+<pre><code class="language-bash">ssh-copy-id alice@192.168.1.10
+</code></pre>
+<p>You’ll be prompted for the server password <strong>one last time</strong>. After that, login won’t require a password.</p>
+<hr />
+<h2 id="secure-file-transfer-with-scp">📁 Secure File Transfer with SCP</h2>
+<h3 id="from-local-to-remote">From local to remote:</h3>
+<pre><code class="language-bash">scp file.txt user@remote_host:/remote/path/
+</code></pre>
+<p><strong>Example:</strong></p>
+<pre><code class="language-bash">scp myfile.txt alice@192.168.1.10:/home/alice/
+</code></pre>
+<h3 id="from-remote-to-local">From remote to local:</h3>
+<pre><code class="language-bash">scp user@remote_host:/remote/file.txt /local/path/
+</code></pre>
+<hr />
+<h2 id="recursively-copy-folders">🔁 Recursively Copy Folders</h2>
+<pre><code class="language-bash">scp -r myfolder user@host:/remote/path/
+</code></pre>
+<hr />
+<h2 id="port-forwarding">🔧 Port Forwarding</h2>
+<p>Tunnel remote services to your local machine:</p>
+<pre><code class="language-bash">ssh -L 8080:localhost:80 user@host
+</code></pre>
+<p>Now <code>localhost:8080</code> on your machine maps to <code>localhost:80</code> on the remote server.</p>
+<hr />
+<h2 id="ssh-config-file-for-easy-connections">🗂️ SSH Config File for Easy Connections</h2>
+<p>Edit or create <code>~/.ssh/config</code>:</p>
+<pre><code class="language-ini">Host myserver
+  HostName 192.168.1.10
+  User alice
+  IdentityFile ~/.ssh/id_rsa
+  Port 22
+</code></pre>
+<p>Then simply run:</p>
+<pre><code class="language-bash">ssh myserver
+</code></pre>
+<hr />
+<h2 id="summary-of-basic-ssh-commands">📋 Summary of Basic SSH Commands</h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connect to server</td>
+<td><code>ssh user@host</code></td>
+</tr>
+<tr>
+<td>Copy file to server</td>
+<td><code>scp file.txt user@host:/path/</code></td>
+</tr>
+<tr>
+<td>Copy file from server</td>
+<td><code>scp user@host:/file.txt .</code></td>
+</tr>
+<tr>
+<td>Copy folder recursively</td>
+<td><code>scp -r folder user@host:/path/</code></td>
+</tr>
+<tr>
+<td>Generate SSH key pair</td>
+<td><code>ssh-keygen</code></td>
+</tr>
+<tr>
+<td>Copy key to server</td>
+<td><code>ssh-copy-id user@host</code></td>
+</tr>
+<tr>
+<td>Enable port forwarding</td>
+<td><code>ssh -L local_port:host:remote_port user@host</code></td>
+</tr>
+<tr>
+<td>Configure easy login</td>
+<td>Edit <code>~/.ssh/config</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="security-tips">🔐 Security Tips</h2>
+<ul>
+<li>Disable root login: Edit <code>/etc/ssh/sshd_config</code> → <code>PermitRootLogin no</code></li>
+<li>Change default port: <code>Port 2222</code> (or similar) in <code>/etc/ssh/sshd_config</code></li>
+<li>Use <code>ufw</code> or <code>firewalld</code> to limit SSH access</li>
+<li>Install <code>fail2ban</code> to block brute-force attacks</li>
+</ul>
+<hr />
+<h2 id="testing-ssh-connection">🧪 Testing SSH Connection</h2>
+<ol>
+<li>Make sure the server is <strong>powered on</strong> and connected to the <strong>network</strong>.</li>
+<li>Use <code>ping &lt;IP&gt;</code> to verify connectivity.</li>
+<li>Try connecting with:</li>
+</ol>
+<pre><code class="language-bash">ssh user@IP_ADDRESS
+</code></pre>
+<hr />
+<h2 id="restart-ssh-service-if-needed">🔄 Restart SSH Service (if needed)</h2>
+<pre><code class="language-bash">sudo systemctl restart ssh
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
