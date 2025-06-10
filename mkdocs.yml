@@ -1,0 +1,6 @@
+site_name: Tutorial Site
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - SSH Tutorial: ssh-tutorial.md
